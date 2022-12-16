@@ -1,4 +1,5 @@
-# Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -126,4 +127,101 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(player_search)
+  game_hash.each do |key, value|
+    value[:players].each do |player|
+      if player[:player_name] == player_search
+        return  p player[:points]
+      end
+    end
+  end
+end
+
+def shoe_size(player_search)
+  game_hash.each do |key, value|
+    value[:players].each do |player|
+      if player[:player_name] == player_search
+        return  p player[:shoe]
+      end
+    end
+  end
+end
+
+def team_colors(team)
+  game_hash.each do |key, value|
+    if value[:team_name] == team
+      return p value[:colors] 
+    end
+  end
+end
+
+def team_names
+  teams = []
+  game_hash.each do|key, value|
+    teams << value[:team_name]
+  end
+  return p teams
+end
+
+def player_numbers (team)
+  jersey_numbers = []
+    game_hash.each do|key, value|
+      if value[:team_name] == team
+        value.each do |key, value|
+          if key == :players
+            value.each do |player|
+              jersey_numbers << player[:number]
+            end
+          end
+        end
+      end
+    end
+    return p jersey_numbers
+end
+
+def player_stats(player_search)
+  game_hash.each do |key, value|
+    value[:players].each do |player|
+      if player[:player_name] == player_search
+        return p player
+      end
+    end
+  end
+end
+
+def big_shoe_rebounds
+  biggest_shoe = 0
+  rebounds = {}
+  game_hash.each do |key, value|
+    value[:players].each do |player|
+      if player[:shoe] > biggest_shoe
+        biggest_shoe = player[:shoe]
+        rebounds = player[:rebounds]
+      end
+    end
+  end
+    return p rebounds
+end
+
+
+num_points_scored ("Ben Gordon")
+num_points_scored ("Jeff Adrien")
+
+shoe_size ("Alan Anderson")
+shoe_size ("DeSagna Diop")
+
+team_colors ("Charlotte Hornets")
+team_colors ("Brooklyn Nets")
+
+team_names
+
+player_numbers ("Charlotte Hornets")
+player_numbers ("Brooklyn Nets")
+
+player_stats ("Bismack Biyombo")
+player_stats ("Reggie Evans")
+
+big_shoe_rebounds
+
+
+
